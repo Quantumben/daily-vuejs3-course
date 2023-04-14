@@ -125,10 +125,25 @@
             </table>
         </div>
     </div>
-</template>
+ </template>
 
 <script>
 export default {
     name: "Post",
+    data(){
+        return {
+            posts: [],
+        }
+    },
+    mounted() {
+        this.fetchPosts()
+    },
+    methods: {
+        fetchPosts(){
+            axios.get('/api/posts')
+            .then(response => this.posts = response.data)
+            .catch(error => console.log(error));
+        }
+    }
 };
 </script>
