@@ -87,7 +87,7 @@
                 </tbody>
             </table>
 
-            <Pagination :data="posts" @pagination-change-page="getPosts" />
+            <Pagination :data="posts" @pagination-change-page="page => getPosts(page, selectedCategory)" />
         </div>
     </div>
 </template>
