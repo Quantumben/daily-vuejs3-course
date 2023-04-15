@@ -105,7 +105,7 @@ The onMounted(getPosts) statement calls the getPosts function when the component
 The return { posts } statement returns the posts data object to be used in the template of the component.
 */ -->
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import usePosts from "../../composables/posts";
 import useCategories from "../../composables/categories";
 
@@ -121,7 +121,11 @@ export default {
             getCategories();
         });
 
-        return { posts, getPosts, categories };
+        watch(selectedCategory, (current, previous) => {
+            getPosts(1, current)
+        })
+
+        return { posts, getPosts, categories, selectedCategory };
     },
 };
 </script>
