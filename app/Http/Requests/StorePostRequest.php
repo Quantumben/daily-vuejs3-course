@@ -26,5 +26,12 @@ class StorePostRequest extends FormRequest
             'content' => 'required',
             'category_id' => ['required','exists:categories,id']
          ];
+
+
+    }
+
+    public function attributes()
+    {
+        return ['category_id' => 'category'];
     }
 }
