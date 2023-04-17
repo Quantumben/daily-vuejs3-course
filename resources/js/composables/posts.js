@@ -65,7 +65,10 @@ export default function usePosts() {
         axios.post('/api/posts', serializedPost)
             .then(response => {
                 router.push({ name: 'posts.index' })
-                swal('Post saved successfully')
+                swal({
+                    icon: 'success',
+                    title: 'Post saved successfully'
+                })
             })
             .catch(error => {
                 if (error && error.response && error.response.data) {
@@ -85,7 +88,10 @@ export default function usePosts() {
         axios.put('/api/posts/' + post.id, post)
             .then(response => {
                 router.push({ name: 'posts.index' })
-                swal('Post updated successfully')
+                swal({
+                    icon: 'success',
+                    title: 'Post updated successfully'
+                })
             })
             .catch(error => {
                 if (error && error.response && error.response.data) {
