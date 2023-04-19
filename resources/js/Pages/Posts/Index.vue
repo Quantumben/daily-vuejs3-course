@@ -61,31 +61,12 @@
         </div>
     </div>
 </template>
-<!-- /*
-This code defines a Vue.js component called "Post" and uses the Vue.js composition API to fetch and display a list of posts.
 
-The import { onMounted } from 'vue' statement imports the onMounted function from the Vue.js package.
-
-The import usePosts from '../../composables/posts' statement imports a custom composable function called usePosts from the posts.js file located in the composables directory.
-
-The const { posts, getPosts } = usePosts() statement calls the usePosts() function to get the posts data and getPosts function from the posts.js file.
-
-The onMounted(getPosts) statement calls the getPosts function when the component is mounted.
-
-The return { posts } statement returns the posts data object to be used in the template of the component.
-*/ -->
 <script>
-import { onMounted } from 'vue';
-import usePosts from '../../composables/posts'
-
 export default {
     name: "Post",
-    setup(){
-        const { posts, getPosts } = usePosts()
-
-        onMounted(getPosts)
-
-        return { posts }
-    },
+    props: {
+        posts: Object
+    }
 };
 </script>
