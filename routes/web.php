@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'dashboard')->name('dashboard');
 
-Route::get('posts', [\App\Http\Controllers\PostController::class, 'index']);
-Route::inertia('about', 'About');
+Route::get('posts', [\App\Http\Controllers\PostController::class, 'index'])
+    ->name('posts.index');
+Route::inertia('about', 'About')->name('pages.about');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
