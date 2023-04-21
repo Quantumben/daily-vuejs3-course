@@ -64,6 +64,9 @@
                         class="bg-white overflow-hidden shadow-sm sm:rounded-lg"
                     >
                         <div class="p-6 bg-white border-b border-gray-200">
+                            <div v-if="$page.props.flash.message" class="text-blue-600 mb-4">
+                                {{$page.props.flash.message}}
+                            </div>
                             <slot />
                         </div>
                     </div>
