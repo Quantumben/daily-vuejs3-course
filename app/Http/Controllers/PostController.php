@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use inertia;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 
 class PostController extends Controller
@@ -23,12 +22,11 @@ class PostController extends Controller
         return inertia('Posts/Create');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content
-        ]);
+        // sleep(3);
+
+        Post::create($request->validated());
 
         return redirect()->route('posts.index');
     }

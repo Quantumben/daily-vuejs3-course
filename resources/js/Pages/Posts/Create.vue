@@ -9,6 +9,9 @@
                         Title
                     </label>
                     <input v-model="form.title" type="text" id="title" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <div v-if="errors.title" class="text-red-600">
+                        {{errors.title}}
+                    </div>
                 </div>
 
                 <div class="mt-4">
@@ -16,11 +19,14 @@
                         Content
                     </label>
                     <textarea v-model="form.content" id="content" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                    <div v-if="errors.content" class="text-red-600">
+                        {{errors.content}}
+                    </div>
                 </div>
             </div>
 
             <div class="py-4">
-                <button type="submit" class="inline-block px-4 py-3 bg-blue-500 text-white rounded">
+                <button type="submit" :disabled="form.processing" class="inline-block px-4 py-3 bg-blue-500 text-white rounded">
                     Save post
                 </button>
                 <Link :href="route('posts.index')" class="ml-2 inline-block px-4 py-3 bg-gray-100 rounded">
@@ -41,6 +47,9 @@ export default {
         AppLayout,
         Head,
         Link,
+    },
+    props: {
+        errors: Object
     },
     setup() {
         const form = useForm({
