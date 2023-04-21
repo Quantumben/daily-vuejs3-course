@@ -1,3 +1,4 @@
+import { InertiaProgress } from '../../../../node_modules/@inertiajs/progress/dist';
 <template>
     <div class="overflow-hidden overflow-x-auto p-6 bg-white border-gray-200">
         <div class="min-w-full align-middle">
@@ -67,6 +68,10 @@
 
 <script>
 import { Link } from "@inertiajs/vue3";
+import {InertiaProgress} from '@inertiajs/progress'
+
+InertiaProgress.init()
+
 export default {
     name: "Post",
     components: {
