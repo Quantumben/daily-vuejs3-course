@@ -7,6 +7,7 @@
 
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
+import { InertiaProgress } from '@inertiajs/progress'
 
 
 createInertiaApp({
@@ -21,4 +22,19 @@ createInertiaApp({
             .mixin({ methods: { route: window.route } })
             .mount(el);
     },
+});
+
+InertiaProgress.init({
+    //The delay after which the progress bar will
+    //appear during navigation, in milliseconds
+    delay: 250,
+
+    //The color of the progress bar
+    color: '#29d',
+
+    //Whether to include the default Nprogress styles
+    includeCss: true,
+
+    //Whether the Nprogress spinner will be shown
+    showSpinner: true
 });

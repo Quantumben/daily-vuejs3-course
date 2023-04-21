@@ -68,22 +68,7 @@ import { InertiaProgress } from '../../../../node_modules/@inertiajs/progress/di
 
 <script>
 import { Link } from "@inertiajs/vue3";
-import {InertiaProgress} from '@inertiajs/progress'
 
-InertiaProgress.init( {
-    //The delay after which the progress bar will
-    //appear during navigation, in milliseconds
-    delay:250,
-
-    //The color of the progress bar
-    color: '#29d',
-
-    //Whether to include the default Nprogress styles
-    includeCss: true,
-
-    //Whether the Nprogress spinner will be shown
-    showSpinner:true
-});
 
 export default {
     name: "Post",
