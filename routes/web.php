@@ -20,6 +20,7 @@ Route::view('/', 'dashboard')->name('dashboard');
 Route::resource('posts', \App\Http\Controllers\PostController::class);
 Route::inertia('about', 'About')->name('pages.about');
 Route::inertia('login', 'Auth/Login')->name('login');
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'store'])->name('login.post');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
