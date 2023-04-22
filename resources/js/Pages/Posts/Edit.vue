@@ -75,11 +75,7 @@ export default {
         errors: Object,
     },
     setup(props) {
-        const form = useForm({
-            id: props.post.id,
-            title:props.post.title,
-            content: props.post.content,
-        });
+        const form = useForm(props.post);
         return { form };
     },
 };
