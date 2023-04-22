@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'dashboard')->name('dashboard');
+Route::inertia('/', 'Auth/Login')->name('login');
 
 Route::group(['middleware' =>'auth'], function () {
     Route::resource('posts', \App\Http\Controllers\PostController::class);
@@ -27,7 +27,12 @@ Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'store'
 
 //Register
 Route::inertia('register', 'Auth/Register')->name('register');
-Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register.post');
+Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])
+    ->name('register.post');
+
+//logout
+Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'destroy'])
+    ->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
