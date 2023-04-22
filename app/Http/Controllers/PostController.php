@@ -25,10 +25,18 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         // sleep(3);
- 
+
         Post::create($request->validated());
 
         return redirect()->route('posts.index')
             ->with('message', 'Post created successfully');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()->route('posts.index')
+            ->with('message', 'Post deleted successfully');
     }
 }
