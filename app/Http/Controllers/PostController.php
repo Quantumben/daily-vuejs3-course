@@ -32,6 +32,13 @@ class PostController extends Controller
             ->with('message', 'Post created successfully');
     }
 
+    public function edit(Post $post)
+    {
+        $post = new PostResource($post);
+
+        return inertia('Posts/Edit', compact('post'));
+    }
+
     public function destroy(Post $post)
     {
         $post->delete();
