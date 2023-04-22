@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::inertia('/', 'Auth/Login')->name('login');
+Route::redirect('/', 'login');
 
 Route::group(['middleware' =>'auth'], function () {
     Route::resource('posts', \App\Http\Controllers\PostController::class);
