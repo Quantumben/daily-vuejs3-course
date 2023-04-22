@@ -44,7 +44,11 @@
 
                     <div class="flex items-center">
                         <div>
-                            <div>Hi, user</div>
+                            <div>
+                                Hi, {{$page.props.user.name}}
+                            <br/>
+                                {{$page.props.user.email}}
+                            </div>
                         </div>
                     </div>
                     <Link :href="route('logout')" method="post"
