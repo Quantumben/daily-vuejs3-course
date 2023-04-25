@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
 
 Route::group(['middleware' =>'auth'], function () {
-    Route::resource('posts', \App\Http\Controllers\PostController::class);
+    Route::resource('posts', PostController::class);
     Route::inertia('about', 'About')->name('pages.about');
 });
 //Login
@@ -27,15 +28,15 @@ Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'store'
 
 //Register
 Route::inertia('register', 'Auth/Register')->name('register');
-Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])
+Route::post('register', [RegisterController::class, 'store'])
     ->name('register.post');
 
 //logout
 Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'destroy'])
     ->name('logout');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::controller(ProfileController::class)->middleware('auth')->as('profile.')->group(function () {
+    Route::get('/profile', 'edit')->name('edit');
+    Route::patch('/profile', 'update')->name('update');
+    Route::delete('/profile', 'destroy')->name('destroy');
 });

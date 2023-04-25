@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Log;
 use App\Http\Resources\PostResource;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -28,10 +29,20 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        Post::create($request->validated());
+        try{
+
+            Post::create($request->validated());
 
         return redirect()->route('posts.index')
             ->with('message', 'Post created successfully');
+
+        }catch(\Exception $exception){
+
+            Log::error($exception->getMessage());
+            return redirect()->route('posts.index')
+            ->with('message', 'Post not created, try again');
+        }
+
     }
 
     public function edit(Post $post)
@@ -55,7 +66,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('create', Post::class);
-        
+
         $post->delete();
 
         return redirect()->route('posts.index')
